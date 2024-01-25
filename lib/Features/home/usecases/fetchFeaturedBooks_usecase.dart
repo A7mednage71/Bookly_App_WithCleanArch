@@ -3,11 +3,14 @@ import 'package:bookly/Features/home/domain/repos/HomeRepo.dart';
 import 'package:bookly/core/errors/Failure.dart';
 import 'package:dartz/dartz.dart';
 
-class FetchFeaturedBooksUseCase {
-  final HomeRepo homeRepo;
+import '../../../core/usecase/usecase.dart';
 
+class FetchFeaturedBooksUseCase extends UseCase<List<BookEntity>, void> {
+  final HomeRepo homeRepo;
   FetchFeaturedBooksUseCase(this.homeRepo);
-  Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks() {
-    return homeRepo.fetchFeaturedBooks();
+
+  @override
+  Future<Either<Failure, List<BookEntity>>> call([void param]) {
+    throw UnimplementedError();
   }
 }
