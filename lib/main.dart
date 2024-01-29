@@ -9,10 +9,10 @@ import 'package:hive_flutter/adapters.dart';
 
 import 'Features/Splash/presentation/views/splash_view.dart';
 
-void main() {
+void main() async {
   Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
-  Hive.openBox('FeaturedBox');
+  await Hive.openBox(KfeaturedBox);
   runApp(const Bookly());
 }
 
