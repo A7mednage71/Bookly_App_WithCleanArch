@@ -23,10 +23,7 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   Future<List<BookEntity>> fetchNewestBooks() async {
     var data = await apiService.get(
         Endpoint: 'volumes?Filtering=free-ebooks&Sorting=newest&q=programming');
-    List<BookEntity> books = [];
-    for (var book in data['items']) {
-      books.add(BookModel.fromJson(book));
-    }
+    List<BookEntity> books = getbooklist(data);
     return books;
   }
 
