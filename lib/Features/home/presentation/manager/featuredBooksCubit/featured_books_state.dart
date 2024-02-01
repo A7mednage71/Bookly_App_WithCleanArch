@@ -4,7 +4,6 @@ class FeaturedBooksStates {}
 
 class FeaturedBooksSuccess extends FeaturedBooksStates {
   final List<BookEntity> books;
-
   FeaturedBooksSuccess(this.books);
 }
 
