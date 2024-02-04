@@ -5,10 +5,19 @@ import 'package:bookly/Features/home/presentation/manager/featuredBooksCubit/fea
 class FeaturedBooksCubit extends Cubit<FeaturedBooksStates> {
   FeaturedBooksCubit(this.featuredBooksUseCase) : super(FeaturedBooksInitial());
   final FetchFeaturedBooksUseCase featuredBooksUseCase;
-  Future<void> fetchFeaturdBooks() async {
-    emit(FeaturedBooksLoading());
-    var result = await featuredBooksUseCase.call();
-    result.fold((Failure) => emit(FeaturedBooksFailure(Failure.message)),
-        (books) => emit(FeaturedBooksSuccess(books)));
+  Future<void> fetchFeaturdBooks({int pageNumber = 0}) async {
+    if (pageNumber == 0) {
+      emit(FeaturedBooksLoading());
+    } else {
+      emit(FeaturedBookPaginationLoading());
+    }
+    var result = await featuredBooksUseCase.call(pageNumber);
+    result.fold((Failure) {
+      if (pageNumber == 0) {
+        emit(FeaturedBooksFailure(Failure.message));
+      } else {
+        emit(FeaturedBookPaginationFailure(Failure.message));
+      }
+    }, (books) => emit(FeaturedBooksSuccess(books)));
   }
 }

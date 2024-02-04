@@ -15,4 +15,12 @@ class FeaturedBooksFailure extends FeaturedBooksStates {
 
 class FeaturedBooksLoading extends FeaturedBooksStates {}
 
+class FeaturedBookPaginationLoading extends FeaturedBooksStates {}
+
+class FeaturedBookPaginationFailure extends FeaturedBooksStates {
+  final String errorMessage;
+
+  FeaturedBookPaginationFailure(this.errorMessage);
+}
+
 class FeaturedBooksInitial extends FeaturedBooksStates {}
